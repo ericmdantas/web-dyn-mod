@@ -14,24 +14,21 @@
 		</div>
 	
 		<script>
-			function changeText(info) {
-				document.getElementById('wat').innerText = info
-			}
-		
 			import('./mod1.js').then(mod1 => mod1.go1())
-				.then(info1 => {
-					changeText(info1)
+				.then((info1) => {
+					document.getElementById('wat').innerText = info1
 				
-					import('./mod2.js').then(mod2 => mod2.go2())
-						.then(info2 => {
-							changeText(info2)
-							
-							import('./mod3.js').then(mod3 => mod3.go3())
-								.then(info3 => {
-									changeText(info3)
-								})
-						})
+					return import('./mod2.js').then(mod2 => mod2.go2())
 				})
+				.then((info2) => {
+					document.getElementById('wat').innerText = info2
+				
+					return import('./mod3.js').then(mod3 => mod3.go3())			
+				})
+				.then((info3) => {
+					document.getElementById('wat').innerText = info3
+				})
+			
 		</script>
 	</body>
 </html>
