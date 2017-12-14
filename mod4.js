@@ -1,12 +1,9 @@
-import {go4} from './mod4.js'
-
-export function go3() {
+export function go4() {
 	return new Promise((res) => {
 		setTimeout(() => {
-			let _t = 'go3'
+			let _t = 'go4'
 			document.getElementById('wat').innerText = _t
-			
-			return go4()
+			res(_t)
 		}, 1000)
 	})
 }
